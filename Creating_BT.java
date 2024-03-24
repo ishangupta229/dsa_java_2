@@ -35,6 +35,24 @@ public class Creating_BT {
             preorder(root.left);
             preorder(root.right);
         }
+        public static void inorder(node root) {
+            if (root==null) {
+                return;
+            }
+            inorder(root.left);
+            System.out.print(root.data+ " ");
+            inorder(root.right);
+        }
+
+        public static void postorder(node root) {
+            if (root==null) {
+                return;                
+            }
+            
+            postorder(root.left);
+            postorder(root.right);
+            System.out.print(root.data + " ");
+        }
     }
     
     public static void main(String[] args) {
@@ -45,5 +63,9 @@ public class Creating_BT {
         System.out.println(n.data);
 
         tree.preorder(root);
+        System.out.println();
+        tree.inorder(root);
+        System.out.println();
+        tree.postorder(root);
     }
 }
