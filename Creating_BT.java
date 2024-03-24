@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.LinkedList;
 public class Creating_BT {
     static node root;
     
@@ -53,19 +54,66 @@ public class Creating_BT {
             postorder(root.right);
             System.out.print(root.data + " ");
         }
+
+        public static void levTrav(node root) {
+            if (root==null) {
+                return;
+            }
+            Queue <node> q = new LinkedList<>();
+            q.add(root);
+            q.add(null);
+            while (!q.isEmpty()) {
+                node curr = q.remove();
+                if (curr==null) {
+                    System.out.println();
+                    if (q.isEmpty()) {
+                        break;
+                    }else{
+                        q.add(null);
+                    }
+                } else{
+                    System.out.print(curr.data + " ");
+                    if (curr.left != null) {
+                        q.add(curr.left);
+                    }
+                    if (curr.right != null) {
+                        q.add(curr.right);
+                    }
+                }
+            }
+        }
+
+        static int x;
+        static int y;
+        public static int height(node root) {
+            if (root==null) {
+                return 0;
+            }
+            if (root.left == null && root.right == null) {
+                return 1;
+            }
+            x += height(root.left);
+            y += height(root.right);
+            // System.out.println("x = " + x );
+            // System.out.println("y = " + y );
+            return x>=y ? x:y ;
+        }
+
     }
     
     public static void main(String[] args) {
-        int nodes [] = {1,2,4,-1,-1,5,-1,-1,3,-1,-1};
+        int nodes [] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,7,8,-1,-1,-1,-1};
 
         Binary_Tree tree = new Binary_Tree();
         node n = tree.Binary_Tree(nodes);
-        System.out.println(n.data);
-
-        tree.preorder(root);
-        System.out.println();
-        tree.inorder(root);
-        System.out.println();
-        tree.postorder(root);
+        // System.out.println(n.data);
+        // tree.preorder(root);
+        // System.out.println();
+        // tree.inorder(root);
+        // System.out.println();
+        // tree.postorder(root);
+        
+        // tree.levTrav(root);
+        System.out.println("Height of the tree = " + tree.height(root));
     }
 }
