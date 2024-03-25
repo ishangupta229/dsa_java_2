@@ -99,6 +99,21 @@ public class Creating_BT {
             return x>=y ? x:y ;
         }
 
+        public static int sum(node root) {
+            if (root==null) {
+                return 0;
+            }
+            return root.data + sum(root.left)+ sum(root.right);
+        }
+        
+        public static int count(node root) {
+            if (root==null) {
+                return 0;
+            }
+            return 1 + count(root.left)+ count(root.right);
+        }
+
+
     }
     
     public static void main(String[] args) {
@@ -106,14 +121,16 @@ public class Creating_BT {
 
         Binary_Tree tree = new Binary_Tree();
         node n = tree.Binary_Tree(nodes);
-        // System.out.println(n.data);
-        // tree.preorder(root);
-        // System.out.println();
-        // tree.inorder(root);
-        // System.out.println();
-        // tree.postorder(root);
+        System.out.println(n.data);
+        tree.preorder(root);
+        System.out.println();
+        tree.inorder(root);
+        System.out.println();
+        tree.postorder(root);
         
-        // tree.levTrav(root);
+        tree.levTrav(root);
         System.out.println("Height of the tree = " + tree.height(root));
+        System.out.println(tree.count(root));
+        System.out.println(tree.sum(root));
     }
 }
